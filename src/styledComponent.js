@@ -5,7 +5,7 @@ export const Bg = styled.div`
   width: 100vw;
   background-color: #152850;
 `
-export const ImgBg = styled.img`
+export const ImgBg = styled.div`
   height: 25%;
   width: 100vw;
   background-image: url('https://assets.ccbp.in/frontend/react-js/music-playlist/music-playlist-Edsheeran-bg.png');

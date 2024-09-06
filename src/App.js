@@ -148,20 +148,20 @@ class App extends Component {
               <Search type="search" onChange={this.onChangeSearchInput} />
               <FaSearch />
             </FlexRow>
-            {trackList.length === 0 ? (
-              <>{this.renderNoSongView()}</>
-            ) : (
-              <Un>
-                {trackList.map(each => (
-                  <SongItem
-                    key={each.id}
-                    details={each}
-                    deleteSong={this.deleteSong}
-                  />
-                ))}
-              </Un>
-            )}
           </FlexRow>
+          {trackList.length === 0 ? (
+            <>{this.renderNoSongView()}</>
+          ) : (
+            <Un>
+              {trackList.map(each => (
+                <SongItem
+                  key={each.id}
+                  details={each}
+                  deleteSong={this.deleteSong}
+                />
+              ))}
+            </Un>
+          )}
         </PlaylistBg>
       </Bg>
     )
