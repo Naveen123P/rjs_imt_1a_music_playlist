@@ -1,7 +1,7 @@
 import {AiOutlineDelete} from 'react-icons/ai'
 
-import {Li, DelButton} from './styledComponent'
-import {FlexRow, Para} from '../../styledComponent'
+import {Li, Img, DelButton} from './styledComponent'
+import {FlexRow, Para, Heading} from '../../styledComponent'
 
 const SongItem = props => {
   const {details, deleteSong} = props
@@ -12,11 +12,13 @@ const SongItem = props => {
   return (
     <Li>
       <FlexRow justifyContent="flex-start">
-        <img src={imageUrl} alt="track" className="image" />
-        <Para fontSize="0.4rem">{name}</Para>
-        <Para color="#3b82f6">{genre}</Para>
+        <Img src={imageUrl} alt="track" className="image" />
+        <div>
+          <Para fontSize="0.9rem">{name}</Para>
+          <Para color="#3b82f6">{genre}</Para>
+        </div>
       </FlexRow>
-      <FlexRow width="200px">
+      <FlexRow width="120px">
         <Para>{duration}</Para>
         <DelButton type="button" data-testid="delete" onClick={onClickDelete}>
           <AiOutlineDelete />{' '}

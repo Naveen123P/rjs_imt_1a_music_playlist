@@ -3,16 +3,7 @@ import {FaSearch} from 'react-icons/fa'
 
 import SongItem from './components/SongItem'
 
-import {
-  Bg,
-  ImgBg,
-  Para,
-  PlaylistBg,
-  FlexRow,
-  Search,
-  Heading,
-  Un,
-} from './styledComponent'
+import {Bg, ImgBg, Para, FlexRow, Search, Heading, Un} from './styledComponent'
 import './App.css'
 
 const initialTracksList = [
@@ -103,22 +94,27 @@ const initialTracksList = [
 class App extends Component {
   state = {
     trackList: initialTracksList,
+    trackListDisplay: initialTracksList,
     searchText: '',
   }
 
   renderNoSongView = () => (
-    <FlexRow alignItem="center">
-      <Heading fontSize="2rem" height="100%">
-        {' '}
+    <FlexRow
+      alignItem="center"
+      justifyContent="center"
+      height="calc(70vh - 5rem)"
+    >
+      <Para fontSize="2rem" textAlign="center">
         No Songs Found
-      </Heading>
+      </Para>
     </FlexRow>
   )
 
   getSearchResult = () => {
-    const {trackList, searchText} = this.state
-    const filteredSongs = trackList.filter(each =>
-      each.name.includes(searchText),
+    const {trackListDisplay, searchText} = this.state
+
+    const filteredSongs = trackListDisplay.filter(each =>
+      each.name.toLowerCase().includes(searchText.toLowerCase()),
     )
     this.setState({trackList: filteredSongs})
   }
@@ -136,17 +132,25 @@ class App extends Component {
   render() {
     const {trackList} = this.state
     return (
-      <Bg>
+      <>
         <ImgBg>
-          <Heading fontSize="1rem">Ed Sheeran</Heading>
+          <Heading fontSize="1.5rem">Ed Sheeran</Heading>
           <Para fontSize="1rem">Singer</Para>
         </ImgBg>
-        <PlaylistBg>
-          <FlexRow>
-            <Heading fontSize="0.5rem">Songs Playlist</Heading>
-            <FlexRow border="2px solid #cbd5e1" width="250px">
-              <Search type="search" onChange={this.onChangeSearchInput} />
-              <FaSearch />
+        <Bg>
+          <FlexRow height="3rem">
+            <Heading fontSize="1rem">Songs Playlist</Heading>
+            <FlexRow
+              border="1px solid #cbd5e1"
+              width="250px"
+              borderRadius="5px"
+            >
+              <Search
+                type="search"
+                onChange={this.onChangeSearchInput}
+                placeholder="Search"
+              />
+              <FaSearch className="icon" />
             </FlexRow>
           </FlexRow>
           {trackList.length === 0 ? (
@@ -162,8 +166,8 @@ class App extends Component {
               ))}
             </Un>
           )}
-        </PlaylistBg>
-      </Bg>
+        </Bg>
+      </>
     )
   }
 }
